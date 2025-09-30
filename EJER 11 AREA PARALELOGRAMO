@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+double raiz(double x) {
+    double r = x;
+    for(int i=0;i<20;i++) {
+        r = 0.5 * (r + x/r);
+    }
+    return r;
+}
+
+void productoCruz(int u[3], int v[3], int res[3]) {
+    res[0] = u[1]*v[2] - u[2]*v[1];
+    res[1] = u[2]*v[0] - u[0]*v[2];
+    res[2] = u[0]*v[1] - u[1]*v[0];
+}
+
+double magnitud(int v[3]) {
+    return raiz(v[0]*v[0] + v[1]*v[1] + v[2]*v[2]);
+}
+
+int main() {
+    int u[3] = {1,2,0};
+    int v[3] = {3,0,1};
+    int cruz[3];
+
+    productoCruz(u, v, cruz);
+    double area = magnitud(cruz);
+
+    cout << "Area del paralelogramo = " << area << "\n";
+    return 0;
+}
