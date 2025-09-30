@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cstdlib> 
+using namespace std;
+
+int DetalleCliente[10000][3];
+
+void llamarDetaCliente() {
+    for(int i = 0; i < 10000; i++) {
+        DetalleCliente[i][0] = rand() % 2;
+        DetalleCliente[i][1] = rand() % 83 + 1943;
+        DetalleCliente[i][2] = rand() % 195;
+    }
+}
+
+int main() {
+    llamarDetaCliente(); 
+
+    for(int i = 0; i < 10000; i++) {
+        cout << "Detalle cliente: "
+             << DetalleCliente[i][0] << " "
+             << DetalleCliente[i][1] << " "
+             << DetalleCliente[i][2] << endl;
+    }
+
+    return 0;
+}
