@@ -1,0 +1,48 @@
+#include <iostream>
+using namespace std;
+
+const int N = 3;
+
+double determinant(double A[N][N]) {
+    return A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1])
+         - A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0])
+         + A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+}
+
+void cofactor(double A[N][N], double adj[N][N]) {
+    adj[0][0] =  (A[1][1]*A[2][2]-A[1][2]*A[2][1]);
+    adj[0][1] = -(A[1][0]*A[2][2]-A[1][2]*A[2][0]);
+    adj[0][2] =  (A[1][0]*A[2][1]-A[1][1]*A[2][0]);
+    adj[1][0] = -(A[0][1]*A[2][2]-A[0][2]*A[2][1]);
+    adj[1][1] =  (A[0][0]*A[2][2]-A[0][2]*A[2][0]);
+    adj[1][2] = -(A[0][0]*A[2][1]-A[0][1]*A[2][0]);
+    adj[2][0] =  (A[0][1]*A[1][2]-A[0][2]*A[1][1]);
+    adj[2][1] = -(A[0][0]*A[1][2]-A[0][2]*A[1][0]);
+    adj[2][2] =  (A[0][0]*A[1][1]-A[0][1]*A[1][0]);
+}
+
+void inverse(double A[N][N], double inv[N][N]) {
+    double det = determinant(A);
+    if(det == 0) {
+        cout << "La matriz no tiene inversa.\n";
+        return;
+    }
+    double adj[N][N];
+    cofactor(A, adj);
+    for(int i=0;i<N;i++)
+        for(int j=0;j<N;j++)
+            inv[i][j] = adj[j][i] / det; // transpuesta / determinante
+}
+int main() {
+    double A[N][N] = {{1,2,3},{0,1,4},{5,6,0}};
+    double inv[N][N];
+    inverse(A, inv);
+
+    cout << "Inversa:\n";
+    for(int i=0;i<N;i++) {
+        for(int j=0;j<N;j++)
+            cout << inv[i][j] << " ";
+        cout << "\n";
+    }
+    return 0;
+}
