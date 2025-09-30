@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int Px=2, Py=1, Pz=3; 
+    int nx=1, ny=-1, nz=2; 
+
+ 
+    cout << "Ecuacion del plano: ";
+    cout << nx << "(x - " << Px << ") + "
+         << ny << "(y - " << Py << ") + "
+         << nz << "(z - " << Pz << ") = 0\n";
+
+    return 0;
+}
